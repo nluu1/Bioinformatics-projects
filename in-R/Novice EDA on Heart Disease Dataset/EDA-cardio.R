@@ -144,9 +144,65 @@ ggplot(data, aes(x=oldpeak))+
     geom_histogram(color = "black", fill = "green", bins = 12)+
     labs(x="Peak", title = "Old-Peak")
 
+#Target
+ggplot(data, aes(target, fill=target)) + 
+    geom_bar() +
+    labs(x="Disease", y="Number of patients",
+         title = "Healthy or Sick Individuals") +
+    scale_fill_discrete(name = "Have disease?")
 
+#Sex
+ggplot(data, aes(sex, fill=sex)) + 
+    geom_bar() +
+    labs(x="Sex", y="Number of patients",
+         title = "Gender (Male or Female)") +
+    scale_fill_discrete(name = "Gender")
 
+#CP
+ggplot(data, aes(cp, fill=cp)) + 
+    geom_bar() +
+    labs(x="Chest Pain Type", y="Number of patients",
+         title = "Chest Pain Type") +
+    scale_fill_discrete(name = "Type")
 
+#FBS
+ggplot(data, aes(fbs, fill=fbs)) + 
+    geom_bar() +
+    labs(x="Fasting Blood Sugar", y="Number of patients",
+         title = "Plasma Glucose Fasting") +
+    scale_fill_discrete(name = "Fasting")
 
+#Gender vs Target
+ggplot(data, aes(sex, fill=target)) + 
+    geom_bar(position='dodge') +
+    labs(fill="Disease", x="Gender", y="Number of patients",
+         title = "Gender (F/M) vs. Class (Healthy/Sick)")
 
+#Age vs Target
+ggplot(data, aes(age, fill=target)) + 
+    geom_bar() +
+    labs(fill="Disease", x="Age", y="Number of patients",
+         title = "Age vs. Class (Healthy/Sick)")
 
+#CP vs Target
+ggplot(data, aes(cp, fill=target)) + 
+    geom_bar(position='dodge') +
+    labs(fill="Disease", x="Type", y="Number of patients",
+         title = "Chest pain type vs. Class (Healthy/Sick)")
+
+#Slope vs target
+ggplot(data, aes(slope, fill=target)) + 
+    geom_bar() +
+    labs(fill="Disease", x="Slope", y="Number of patients",
+         title = "Slope of ST Segment vs. Class (Healthy/Sick)")
+
+#Fasting blood sugar vs Target
+ggplot(data, aes(fbs,fill=target)) + 
+    geom_bar(position='dodge') +
+    labs(fill="Disease", x="Fasting blood sugar", y="Number of patients",
+         title = "Fasting Blood Sugar vs. Class (Healthy/Sick)")
+
+#Slope vs Oldpeak vs Target
+ggplot(data, aes(x=slope, y=oldpeak, fill=target)) +
+    geom_boxplot() +
+    labs(fill="Disease", x="Slope of ST segment", y="Depression of ST segment")
