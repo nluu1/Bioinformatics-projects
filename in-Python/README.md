@@ -1,5 +1,4 @@
-
-Jupyter-notebook/ : contains all in-class projects following a walkthrough 
+# Analysis practice in Python:
 
 :open_file_folder: data : contains all the dataset used for projects inside in-Python repo
 
