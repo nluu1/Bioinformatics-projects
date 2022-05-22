@@ -4,6 +4,7 @@
 
 :open_file_folder: Jupyter-notebook: contains all in-class projects following a walkthrough 
  - :page_with_curl: *Practice plots with Panda*
+ - :page_with_curl: *Getting started with Biopython*
 
 :open_file_folder: Biopython
 
