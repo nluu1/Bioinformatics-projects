@@ -206,3 +206,11 @@ ggplot(data, aes(fbs,fill=target)) +
 ggplot(data, aes(x=slope, y=oldpeak, fill=target)) +
     geom_boxplot() +
     labs(fill="Disease", x="Slope of ST segment", y="Depression of ST segment")
+
+#Multiple variables plot with facet_wrap
+#Age vs Target vs sex
+ggplot(data, aes(x=age, fill=target)) + 
+    geom_bar(position='dodge')+
+    labs(fill="Disease", x="Age", y="Number of patients",
+         title = "Age vs. Class(Healthy/Sick) vs. Gender")+
+    facet_wrap(~sex)
