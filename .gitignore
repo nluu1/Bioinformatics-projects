@@ -3,4 +3,5 @@
 *.docx
 *.txt
 *.fa
+.ipynb_checkpoints/
 
