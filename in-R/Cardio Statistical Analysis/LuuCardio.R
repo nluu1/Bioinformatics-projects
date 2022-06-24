@@ -72,22 +72,22 @@ cont.plot <- function(data,X,xlabel,title){
 } 
     
 #Age
-age.plot <- cont.plot(cardio_data,X=age,xlabel="Age",title="Age Distribution")
+age <- cont.plot(cardio_data,X=age,xlabel="Age",title="Age Distribution")
 
 #BP
-BP.plot <- cont.plot(cardio_data,X=BP,xlabel="Blood Pressure (mmHg)",title="Blood Pressure")
+BP <- cont.plot(cardio_data,X=BP,xlabel="Blood Pressure (mmHg)",title="Blood Pressure")
 
 #Cholesterol
-chol.plot <- cont.plot(cardio_data,X=cholesterol,xlabel="Cholesterol level (mg/dL)",title="Cholesterol")
+chol <- cont.plot(cardio_data,X=cholesterol,xlabel="Cholesterol level (mg/dL)",title="Cholesterol")
 
 #Max HR
-HR.plot <- cont.plot(cardio_data,X=maxHR,xlabel="Maximum Heart Rate (bpm)",title="Maximum Heart Rate")
+HR <- cont.plot(cardio_data,X=maxHR,xlabel="Maximum Heart Rate (bpm)",title="Maximum Heart Rate")
 
 #Peak
-peak.plot <- cont.plot(cardio_data,X=peak,xlabel="Peak",title="Peak")
+peak <- cont.plot(cardio_data,X=peak,xlabel="Peak",title="Peak")
 
 ### Spreadsheet of histograms for continuous data
-cont.histogram <- grid.arrange(age.plot,BP.plot,chol.plot,HR.plot,peak.plot, ncol=3)
+cont.histogram <- grid.arrange(age,BP,chol,HR,peak, ncol=3)
 
 #-- Print out Histograms for the categorical data
 
@@ -122,32 +122,29 @@ pgfast <- cat.plot(data=cardio_data,X=PG_fasting,
                title="Plasma Glucose Fasting")
 
 #ECG_rest
-ggplot(cardio_data, aes(ECG_rest, fill=ECG_rest)) + 
-    geom_bar() +
-    labs(x="ECG rest", y="Number of patients",
-         title = "Electrocardiogram on rest") +
-    scale_fill_discrete(name = "ECG rest")
+ecg <- cat.plot(data=cardio_data,X=ECG_rest,
+                   xlabel="ECG rest",
+                   title="Electrocardiogram on rest")
 
 #Thal
-ggplot(cardio_data, aes(thal, fill=thal)) + 
-    geom_bar() +
-    labs(x="Thalach", y="Number of patients",
-         title = "Maximum heart rate achieved (thalach)") +
-    scale_fill_discrete(name = "Thalach")
+thal <- cat.plot(data=cardio_data,X=thal,
+                xlabel="Thalach",
+                title="Maximum heart rate achieved (thalach)")
 
 #Angina
-ggplot(cardio_data, aes(angina, fill=angina)) + 
-    geom_bar() +
-    labs(x="Angina", y="Number of patients",
-         title = "Angina chest pain") +
-    scale_fill_discrete(name = "Angina")
+angina <- cat.plot(data=cardio_data,X=angina,
+                 xlabel="Angina",
+                 title="Angina chest pain")
+
 
 #slope
-ggplot(cardio_data, aes(slope, fill=slope)) + 
-    geom_bar() +
-    labs(x="Slope", y="Number of patients",
-         title = "Slope of ST Segment") +
-    scale_fill_discrete(name = "Slope")
+slope <- cat.plot(data=cardio_data,X=slope,
+                 xlabel="Slope",
+                 title="Slope of ST Segment")
+
+### Spreadsheet of histograms for categorical data
+cat.barplot <- grid.arrange(class, sex, cp, pgfast, ecg, thal, angina, slope, ncol=3, nrow=3)
+
 
 ##Essentially, we do not want to just look at each categorical data, but we want to compare them
 ##Here, I will compare data with Healthy/Sick status
@@ -171,7 +168,7 @@ ggplot(cardio_data, aes(age, fill=class)) +
 ggplot(cardio_data, aes(chest_pain_type, fill=class)) + 
     geom_bar() +
     labs(fill="Disease", x="Age", y="Number of patients",
-         title = "Chest paint type vs. Class (Healthy/Sick)")
+         title = "Chest pain type vs. Class (Healthy/Sick)")
 
 #chest pain type vs Class (Healthy/Sick)
 ggplot(cardio_data, aes(ECG_rest, fill=class)) + 
