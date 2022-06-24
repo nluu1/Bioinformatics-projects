@@ -3,6 +3,8 @@ This repository contains my bioinformatics projects in different programming lan
 
 ## Analysis in R:
 - Novice approach to EDA: data cleaning, data manipulation, general histograms/plots for variables
+- Cardio Statistical Analysis: contains scripts in [Blood Work Analysis](https://github.com/PhyloGrok/AnalyzeBloodwork.git). Includes EDA, Descriptive statistics (histograms, barplots, statistical values)
+    - *In process: Hypothesis T-test*
 
 ### -- To be updated --
 ## Analysis in Python:
