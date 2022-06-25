@@ -64,7 +64,7 @@ View(sum_table,'Summary Statistics')
 
 #--- Print out Histograms for the continuous data
 
-#Function for continuous data
+#Function for continuous data cont.plot
 cont.plot <- function(data,X,xlabel,title){
     ggplot(data=data,aes(x={{X}}))+
         geom_histogram(color = "black", fill = "green", bins = 12)+
@@ -91,7 +91,7 @@ cont.histogram <- grid.arrange(age,BP,chol,HR,peak, ncol=3)
 
 #-- Print out Histograms for the categorical data
 
-#Function for continuous data
+#Function for continuous data cat.plot
 cat.plot <- function(data,X,xlabel,title){
     ggplot(data=data, aes(x={{X}}, fill={{X}})) + 
         geom_bar() +
@@ -147,51 +147,49 @@ cat.barplot <- grid.arrange(class, sex, cp, pgfast, ecg, thal, angina, slope, nc
 
 
 ##Essentially, we do not want to just look at each categorical data, but we want to compare them
-##Here, I will compare data with Healthy/Sick status
+#---- Here, I will compare data with Healthy/Sick status
 
 ######Add ' position = "fill" ' in geom_bar() if want to see 2 column for each, otherwise they are stacked
 
-#Gender vs Class (Healthy/Sick)
-ggplot(cardio_data, aes(sex, fill=class)) + 
+#Function for comparison of other data features with health condition (healthy/sick)
+compare.plot <- function(data,X,fill,xlabel,title){
+  ggplot(data=data, aes(x={{X}}, fill=class)) + 
     geom_bar() +
-    labs(fill="Disease", x="Gender", y="Number of patients",
-         title = "Gender (F/M) vs. Class (Healthy/Sick)")
+    labs(fill="Disease", x=xlabel, y="Number of patients",
+         title = title)
+}
+
+#Gender vs Class (Healthy/Sick)
+sex.class <- compare.plot(data=cardio_data, X=sex, 
+                          xlabel = "Gender",title="Gender (F/M) vs. Class (Healthy/Sick)")
 
 #Age vs Class (Healthy/Sick)
-ggplot(cardio_data, aes(age, fill=class)) + 
-    geom_bar() +
-    labs(fill="Disease", x="Age", y="Number of patients",
-         title = "Age vs. Class (Healthy/Sick)")
-
+age.class <- compare.plot(data=cardio_data, X=age, 
+                          xlabel = "Age",title="Age vs. Class (Healthy/Sick)")
 
 #chest pain type vs Class (Healthy/Sick)
-ggplot(cardio_data, aes(chest_pain_type, fill=class)) + 
-    geom_bar() +
-    labs(fill="Disease", x="Age", y="Number of patients",
-         title = "Chest pain type vs. Class (Healthy/Sick)")
+cp.class <- compare.plot(data=cardio_data, X=chest_pain_type, 
+                          xlabel = "Chest pain type",title="Chest pain type vs. Class (Healthy/Sick)")
 
-#chest pain type vs Class (Healthy/Sick)
-ggplot(cardio_data, aes(ECG_rest, fill=class)) + 
-    geom_bar() +
-    labs(fill="Disease", x="ECG Rest", y="Number of patients",
-         title = "Electrocardiogram on rest vs. Class (Healthy/Sick)")
+#ECG_rest vs Class (Healthy/Sick)
+ecg.class <- compare.plot(data=cardio_data, X=ECG_rest, 
+                         xlabel = "ECG Rest",title="Electrocardiogram on rest vs. Class (Healthy/Sick)")
 
 #thalach vs Class (Healthy/Sick)
-ggplot(cardio_data, aes(thal, fill=class)) + 
-    geom_bar() +
-    labs(fill="Disease", x="Thalach", y="Number of patients",
-         title = "Maximum heart rate achieved vs. Class (Healthy/Sick)")
+thal.class <- compare.plot(data=cardio_data, X=thal, 
+                          xlabel = "Thalach",title="Maximum heart rate achieved vs. Class (Healthy/Sick)")
 
 #Slope vs Class (Healthy/Sick)
-ggplot(cardio_data, aes(slope, fill=class)) + 
-    geom_bar() +
-    labs(fill="Disease", x="Slope", y="Number of patients",
-         title = "Slope of ST Segment vs. Class (Healthy/Sick)")
-#Slope vs Class vs Peak
+slope.class <- compare.plot(data=cardio_data, X=slope, 
+                          xlabel = "Slope",title="Slope of ST Segment vs. Class (Healthy/Sick)")
+
+### Spreadsheet of histograms for data comparison among healthy/sick individuals
+plot.class <- grid.arrange(sex.class, cp.class, ecg.class, thal.class, slope.class, age.class, ncol=3, nrow=3)
+
+#Multiple variables: e.g #Slope vs Class vs Peak
 ggplot(cardio_data, aes(x=slope, y=peak, fill=class)) +
     geom_boxplot() +
     labs(fill="Disease", x="Slope of ST segment", y="Depression of ST segment")
-
 
 ## Hypothesis testing (T-tests)
 #in process
