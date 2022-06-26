@@ -191,5 +191,5 @@ ggplot(cardio_data, aes(x=slope, y=peak, fill=class)) +
     geom_boxplot() +
     labs(fill="Disease", x="Slope of ST segment", y="Depression of ST segment")
 
-## Hypothesis testing (T-tests)
-#in process
+#---- Hypothesis testing (T-tests)
+t.test(age ~ class, data = cardio_data)
