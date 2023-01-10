@@ -11,3 +11,6 @@ This repository contains my bioinformatics projects in different programming lan
 - Jupyter Notebooks: Biopython and Pandas 
 - Machine Learning
 - Covid-19 Identification
+
+## Analysis in Linux (NGS):
+- NGA analysis: variant calling
